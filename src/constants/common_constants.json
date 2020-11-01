@@ -1,0 +1,9 @@
+{
+    "DEFAULT_CONTENT_TYPE_HEADER": {
+        "Content-Type": "application/json"
+      },
+      "MULTIPART_HEADER": {
+        "Content-Type": "multipart/form-data"
+      },
+      "APPLICATION_URL" :"http://localhost:3000/api/v1"
+}

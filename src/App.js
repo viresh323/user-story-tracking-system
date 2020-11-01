@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React  from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import NavigationBar from './components/layout/NavigationBar/NavigationBar'
+import Login from './components/pages/Login/Login'
+import Admin from './components/pages/Admin/Admin'
+import User from './components/pages/User/User'
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import { createStore,  applyMiddleware } from "redux";
+import UserStoryGrid from './components/grid/UserStoryGrid';
 
 function App() {
+
+  const store = createStore( ()=>[],
+  {}, applyMiddleware() );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+    <CssBaseline />
+    <Provider store={store}>
+
+    <NavigationBar />
+    <Router>
+    <Switch>
+            <Route path="/Admin" type="admin">
+              <Admin />
+            </Route>
+            <Route path="/User"  type="user">
+            <User/>
+            </Route>
+            <Route path="/UserGrid" type="user">
+              <UserStoryGrid />
+            </Route>
+            <Route path="/">
+              <Login/>
+              </Route> 
+          </Switch>
+     </Router>
+    </Provider>
+    
+      </React.Fragment>
   );
 }
 
